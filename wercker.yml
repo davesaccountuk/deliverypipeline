@@ -1,11 +1,14 @@
 box: python:2.7-slim
 dev:
   steps:
-    - pip-install
+    - script:
+      name: pipinstall
+      code: |
+        pip install -r /pipeline/source/requirements.txt
     - internal/watch:
         code: python app.py
         reload: true
-# Build definition new stuff
+# Build definition new stuff 
 build:
   # The steps that will be executed on build
   steps:
