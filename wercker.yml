@@ -1,10 +1,6 @@
 box: python:2.7-slim
 dev:
   steps:
-    - script:
-      name: pipinstall
-      code: |
-        pip install -r /pipeline/source/requirements.txt
     - internal/watch:
         code: python app.py
         reload: true
@@ -13,7 +9,10 @@ build:
   # The steps that will be executed on build
   steps:
     # A step that executes `pip install` command, ,,,,,,,
-    - pip-install
+    - script:
+      name: pipinstall
+      code: |
+        pip install -r /pipeline/source/requirements.txt 
 
     # A custom script step, name value is used in the UI
     # and the code value contains the command that get executed
